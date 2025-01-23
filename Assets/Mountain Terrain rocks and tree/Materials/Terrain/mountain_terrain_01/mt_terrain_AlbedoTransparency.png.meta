@@ -121,3 +121,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 97905
+  packageName: Mountain Terrain, Rocks and Tree
+  packageVersion: 3.0
+  assetPath: Assets/Mountain Terrain rocks and tree/Materials/Terrain/mountain_terrain_01/mt_terrain_AlbedoTransparency.png
+  uploadId: 658244
