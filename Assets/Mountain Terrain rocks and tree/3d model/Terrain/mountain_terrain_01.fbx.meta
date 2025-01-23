@@ -109,3 +109,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 97905
+  packageName: Mountain Terrain, Rocks and Tree
+  packageVersion: 3.0
+  assetPath: Assets/Mountain Terrain rocks and tree/3d model/Terrain/mountain_terrain_01.fbx
+  uploadId: 658244

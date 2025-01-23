@@ -104,3 +104,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 97905
+  packageName: Mountain Terrain, Rocks and Tree
+  packageVersion: 3.0
+  assetPath: Assets/Mountain Terrain rocks and tree/Collision/collision_rock_set_02.fbx
+  uploadId: 658244
