@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,37 +13,45 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     Vector3 velocity;
-
     bool isGrounded;
 
-    // Update is called once per frame
     void Update()
     {
-        //checking if we hit the ground to reset our falling velocity, otherwise we will fall faster the next time
+        // Check if player is grounded
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = -2f; // Reset velocity when on the ground
         }
 
+        // Player movement
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        //right is the red Axis, foward is the blue axis
         Vector3 move = transform.right * x + transform.forward * z;
-
         controller.Move(move * speed * Time.deltaTime);
 
-        //check if the player is on the ground so he can jump
+        // Jump logic
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            //the equation for jumping
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            Debug.Log($"Jump! Velocity: {velocity.y}");
         }
 
+        // Apply gravity
         velocity.y += gravity * Time.deltaTime;
 
+        // Move player vertically
         controller.Move(velocity * Time.deltaTime);
+
+
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Visualize groundCheck sphere
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
     }
 }

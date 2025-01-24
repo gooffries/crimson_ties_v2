@@ -22,12 +22,16 @@ public class MouseMovement : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+        Debug.Log($"Mouse Input X: {mouseX}, Y: {mouseY}");
+
         // Rotate the camera up and down (pitch)
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Prevent over-rotation
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         // Rotate the player left and right (yaw)
         playerBody.Rotate(Vector3.up * mouseX);
     }
+
+
 }
