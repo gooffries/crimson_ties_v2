@@ -1150,7 +1150,7 @@ Transform:
   m_GameObject: {fileID: 4476812233068559688}
   serializedVersion: 2
   m_LocalRotation: {x: -0.49507406, y: -0.35581723, z: 0.28977332, w: -0.73778534}
-  m_LocalPosition: {x: 1.023, y: -0.484, z: 0.465}
+  m_LocalPosition: {x: 0.476, y: -0.618, z: 0.233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1257,7 +1257,6 @@ MonoBehaviour:
   wp: {fileID: 2060459962}
   HitParticle: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d,
     type: 3}
-  splashSize: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
