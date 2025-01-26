@@ -3245,7 +3245,8 @@ PrefabInstance:
       value: Wall (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2029857476372711698, guid: 38b797ba6cc77df40a51cd3200365644, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38b797ba6cc77df40a51cd3200365644, type: 3}
@@ -13206,6 +13207,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3066217968599547386, guid: afe06cfa5721b824792de9e11596626b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233472409397745876, guid: afe06cfa5721b824792de9e11596626b,
         type: 3}
       propertyPath: m_Name
@@ -13214,7 +13220,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5896137665671147511, guid: afe06cfa5721b824792de9e11596626b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1097187817}
   m_SourcePrefab: {fileID: 100100000, guid: afe06cfa5721b824792de9e11596626b, type: 3}
 --- !u!4 &1097187815 stripped
 Transform:
@@ -13222,6 +13232,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1097187814}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1097187816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5896137665671147511, guid: afe06cfa5721b824792de9e11596626b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1097187814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1097187817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097187816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e74f809e04645169f93aefc1c2a135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: level2
 --- !u!1001 &1100785546
 PrefabInstance:
   m_ObjectHideFlags: 0
