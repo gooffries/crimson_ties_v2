@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    public WeaponController wp;
-    public GameObject HitParticle;
+    public WeaponController wp;       // Reference to the weapon controller
+    public GameObject HitParticle;   // Optional particle effect for hit feedback
 
     private bool hasSpawnedEffect = false;
 
@@ -11,12 +11,36 @@ public class CollisionDetection : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && wp.IsAttacking && !hasSpawnedEffect)
         {
-            Debug.Log(other.name);
-            other.GetComponent<Animator>().SetTrigger("Hit");
-            Instantiate(HitParticle, new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z), other.transform.rotation);
+            Debug.Log($"Enemy hit: {other.name}");
 
-            hasSpawnedEffect = true; // Prevent further spawning
-            Invoke(nameof(ResetEffectSpawn), 0.5f); // Reset after 0.5 seconds
+            // Access the Enemy script
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(10f); // Apply damage to the enemy
+            }
+            else
+            {
+                Debug.LogWarning("Enemy script not found or enemy already destroyed.");
+                return; // Stop further processing
+            }
+
+            // Trigger hit animation (optional)
+            Animator anim = other.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.SetTrigger("Hit");
+            }
+
+            // Instantiate hit particle effect (optional)
+            if (HitParticle != null)
+            {
+                Instantiate(HitParticle, other.transform.position, Quaternion.identity);
+            }
+
+            // Prevent multiple interactions
+            hasSpawnedEffect = true;
+            Invoke(nameof(ResetEffectSpawn), 0.5f);
         }
     }
 

@@ -3,51 +3,67 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public GameObject Sword;
-    public bool CanAttack = true;
-    public float AttackCoolDown = 1.0f;
-
-    public AudioClip SwordAttackSound;
+    public GameObject Sword; // Reference to the sword GameObject
+    public bool CanAttack = true; // Tracks whether the player can attack
+    public float AttackCoolDown = 1.0f; // Time between attacks
+    private float currentSwordStrength = 1f; // Current sword strength
+    public AudioClip SwordAttackSound; // Sound to play during attack
     public bool IsAttacking = false;
+
+    void Start()
+    {
+        // Initialize sword strength from UIManager
+        if (UIManager.Instance != null)
+        {
+            currentSwordStrength = UIManager.Instance.GetSwordStrength();
+        }
+    }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && CanAttack)
         {
-            Debug.Log("Mouse Click Detected!");
             SwordAttack();
         }
     }
 
-
     public void SwordAttack()
     {
         IsAttacking = true;
-        Debug.Log("Attack Triggered!");
-        CanAttack = false; // Prevent spamming attacks
+        CanAttack = false;
+
+        // Trigger sword attack animation
         Animator anim = Sword.GetComponent<Animator>();
+        if (anim != null)
+        {
+            anim.SetTrigger("Attack");
+        }
 
-
-        anim.SetTrigger("Attack"); // Trigger attack animation immediately
+        // Play sword attack sound
         AudioSource ac = GetComponent<AudioSource>();
-        ac.PlayOneShot(SwordAttackSound);
+        if (ac != null && SwordAttackSound != null)
+        {
+            ac.PlayOneShot(SwordAttackSound);
+        }
 
         StartCoroutine(ResetAttackCoolDown());
     }
 
+    public void UpdateSwordStrength(float newStrength)
+    {
+        currentSwordStrength = newStrength;
+        Debug.Log($"Sword strength updated to: {currentSwordStrength}");
+    }
+
+    public float GetSwordDamage()
+    {
+        // Calculate sword damage based on current strength
+        return currentSwordStrength;
+    }
 
     IEnumerator ResetAttackCoolDown()
     {
-        StartCoroutine(ResetAttackBool());
         yield return new WaitForSeconds(AttackCoolDown);
         CanAttack = true;
-        Debug.Log("Cooldown finished. Ready to attack.");
-    }
-
-    IEnumerator ResetAttackBool()
-    {
-        yield return new WaitForSeconds(1.0f);
-        IsAttacking = true;
-
     }
 }
