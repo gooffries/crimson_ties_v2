@@ -34,14 +34,21 @@ public class HealthBarManager : MonoBehaviour
                 return;
             }
 
+            // Calculate enemy height for dynamic offset
+            float height = 2.0f; // Default offset
+            Collider enemyCollider = enemy.GetComponent<Collider>();
+            if (enemyCollider != null)
+            {
+                height = enemyCollider.bounds.size.y + 0.5f; // Add slight padding above the head
+            }
+
             // Initialize the health bar
-            healthBar.Initialize(enemy.transform, maxHealth);
+            Vector3 offset = new Vector3(0, height, 0); // Offset above the enemy's head
+            healthBar.Initialize(enemy.transform, maxHealth, offset);
             healthBars[enemy] = healthBar;
             Debug.Log($"Health bar successfully added for: {enemy.name}");
         }
     }
-
-
 
     public void UpdateHealthBar(GameObject enemy, float currentHealth)
     {
