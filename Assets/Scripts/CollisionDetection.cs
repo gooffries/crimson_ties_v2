@@ -2,50 +2,40 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    public WeaponController wp;       // Reference to the weapon controller
-    public GameObject HitParticle;   // Optional particle effect for hit feedback
-
-    private bool hasSpawnedEffect = false;
+    public WeaponController wp;
+    public GameObject HitParticle; // Assign blood effect prefab in Inspector
+    public float bloodSpawnHeightOffset = 0.8f; // Adjust this to position the blood correctly
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && wp.IsAttacking && !hasSpawnedEffect)
+        if (other.CompareTag("Enemy") && wp.IsAttacking)
         {
             Debug.Log($"Enemy hit: {other.name}");
 
-            // Access the Enemy script
+            // Get the exact point of contact between the sword and the enemy
+            Vector3 hitPoint = other.ClosestPoint(transform.position);
+            Vector3 spawnPosition = hitPoint + new Vector3(0, bloodSpawnHeightOffset, 0); // Slightly above the hit point
+
+            Debug.Log($"Blood should spawn at {spawnPosition}, Enemy Position: {other.transform.position}");
+
+            // Apply damage to enemy
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(10f); // Apply damage to the enemy
+                enemy.TakeDamage(10f);
             }
             else
             {
-                Debug.LogWarning("Enemy script not found or enemy already destroyed.");
-                return; // Stop further processing
+                Debug.LogWarning($"Enemy script missing on {other.name}, skipping damage but still spawning effects.");
             }
 
-            // Trigger hit animation (optional)
-            Animator anim = other.GetComponent<Animator>();
-            if (anim != null)
-            {
-                anim.SetTrigger("Hit");
-            }
-
-            // Instantiate hit particle effect (optional)
+            // Spawn a blood effect at the hit point
             if (HitParticle != null)
             {
-                Instantiate(HitParticle, other.transform.position, Quaternion.identity);
+                GameObject blood = Instantiate(HitParticle, spawnPosition, Quaternion.identity);
+                blood.transform.SetParent(other.transform); // Attach to enemy so it moves with them
+                Debug.Log($"Blood effect spawned at {spawnPosition} and attached to {other.name}");
             }
-
-            // Prevent multiple interactions
-            hasSpawnedEffect = true;
-            Invoke(nameof(ResetEffectSpawn), 0.5f);
         }
-    }
-
-    private void ResetEffectSpawn()
-    {
-        hasSpawnedEffect = false;
     }
 }

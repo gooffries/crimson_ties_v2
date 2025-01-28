@@ -5,21 +5,29 @@ public class EnemyDeathHandler : MonoBehaviour
     public GameObject splatterPrefab; // Cherry blossom splatter effect prefab
     public GameObject rewardPrefab;  // Reward object prefab
     public int rewardCount = 1;      // Number of rewards to drop
+    public float rewardSpawnRadius = 0.5f; // Radius for random reward spawn
 
     public void HandleDeath()
     {
-        // Instantiate the splatter effect at the enemy's position
+        // Instantiate the splatter effect
         if (splatterPrefab != null)
         {
             Vector3 splatterPosition = transform.position + new Vector3(0, 2f, 0); // Adjust Y-axis
             GameObject splatter = Instantiate(splatterPrefab, splatterPosition, Quaternion.identity);
 
             ParticleSystem particleSystem = splatter.GetComponent<ParticleSystem>();
-
             if (particleSystem != null)
             {
-                particleSystem.Play(); // Play the particle system
-                Destroy(splatter, particleSystem.main.duration); // Destroy the splatter object after the effect finishes
+                Debug.Log("Playing splatter effect.");
+                particleSystem.Play();
+
+                // Destroy splatter after effect finishes
+                float effectDuration = particleSystem.main.duration + particleSystem.main.startLifetime.constantMax;
+                Destroy(splatter, effectDuration);
+            }
+            else
+            {
+                Debug.LogWarning("Splatter prefab is missing a ParticleSystem component!");
             }
         }
         else
@@ -30,15 +38,20 @@ public class EnemyDeathHandler : MonoBehaviour
         // Drop rewards
         if (rewardPrefab != null)
         {
+            Debug.Log($"Dropping {rewardCount} rewards.");
             for (int i = 0; i < rewardCount; i++)
             {
+                // Random offset for reward spawn
                 Vector3 randomOffset = new Vector3(
-                    Random.Range(-0.5f, 0.5f),
-                    1f, // Adjust height if necessary
-                    Random.Range(-0.5f, 0.5f)
+                    Random.Range(-rewardSpawnRadius, rewardSpawnRadius),
+                    0, // Spawn at ground level
+                    Random.Range(-rewardSpawnRadius, rewardSpawnRadius)
                 );
 
-                Instantiate(rewardPrefab, transform.position + randomOffset, Quaternion.identity);
+                Vector3 spawnPosition = transform.position + randomOffset;
+
+                Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);
+                Debug.Log($"Reward spawned at: {spawnPosition}");
             }
         }
         else
