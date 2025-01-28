@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Transform target;          // Reference to the enemy's transform
-    public Vector3 offset;            // Offset to position the health bar above the head
-    public Image healthFillImage;     // Reference to the fill image of the health bar
+    public Transform target;          // Enemy's transform
+    public Vector3 offset;            // Offset for positioning the health bar
+    public Image healthFillImage;     // UI fill image for the health bar
     private float maxHealth;
 
     // Initialize the health bar
@@ -16,22 +16,23 @@ public class HealthBar : MonoBehaviour
         offset = offsetValue;
     }
 
-    // Update the health bar's position and health
+    // Update the health bar's health value
     public void UpdateHealth(float currentHealth)
     {
         if (healthFillImage != null)
         {
-            healthFillImage.fillAmount = currentHealth / maxHealth;
+            float healthPercentage = Mathf.Clamp01(currentHealth / maxHealth);
+            healthFillImage.fillAmount = healthPercentage;
         }
     }
 
     void Update()
     {
-        // Update the position of the health bar
-        if (target != null)
+        // Ensure the target exists and Camera.main is not null
+        if (target != null && Camera.main != null)
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(target.position + offset);
-            transform.position = screenPosition;
+            GetComponent<RectTransform>().position = screenPosition; // Use RectTransform for UI positioning
         }
     }
 }

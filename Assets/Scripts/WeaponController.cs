@@ -37,6 +37,7 @@ public class WeaponController : MonoBehaviour
         if (anim != null)
         {
             anim.SetTrigger("Attack");
+            Debug.Log("Attack triggered");
         }
 
         // Play sword attack sound

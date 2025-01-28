@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     [Header("Movement Settings")]
-    public float speed = 12f;
+    public float walkSpeed = 12f;
+    public float runSpeed = 18f; // Faster speed when sprinting
     public float gravity = -9.81f * 2;
     public float jumpHeight = 3f;
 
@@ -56,12 +57,15 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
+        // Detect if the player is holding Shift
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+
         // Player movement
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
         // Jump logic
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -125,5 +129,4 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
         }
     }
-
 }
