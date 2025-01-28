@@ -3,35 +3,35 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider healthSlider;  // Main health slider
-    public Transform target;    // The enemy this health bar is tracking
-    public Vector3 offset = new Vector3(0, 2, 0); // Offset above the enemy's head
+    public Transform target;          // Reference to the enemy's transform
+    public Vector3 offset;            // Offset to position the health bar above the head
+    public Image healthFillImage;     // Reference to the fill image of the health bar
+    private float maxHealth;
 
-    private float lerpSpeed = 0.1f; // Speed for easing effect
-
-    public void Initialize(Transform targetTransform, float maxHealth)
+    // Initialize the health bar
+    public void Initialize(Transform targetTransform, float maxHealthValue, Vector3 offsetValue)
     {
-        target = targetTransform; // Assign the enemy to track
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = maxHealth;
+        target = targetTransform;
+        maxHealth = maxHealthValue;
+        offset = offsetValue;
     }
 
+    // Update the health bar's position and health
     public void UpdateHealth(float currentHealth)
     {
-        healthSlider.value = Mathf.Clamp(currentHealth, 0, healthSlider.maxValue);
+        if (healthFillImage != null)
+        {
+            healthFillImage.fillAmount = currentHealth / maxHealth;
+        }
     }
 
-    private void LateUpdate()
+    void Update()
     {
-        // Follow the enemy's position
+        // Update the position of the health bar
         if (target != null)
         {
-            transform.position = Camera.main.WorldToScreenPoint(target.position + offset);
-        }
-        else
-        {
-            // Destroy the health bar if the target no longer exists
-            Destroy(gameObject);
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(target.position + offset);
+            transform.position = screenPosition;
         }
     }
 }
