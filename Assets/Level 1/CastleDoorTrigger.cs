@@ -3,16 +3,32 @@ using UnityEngine.SceneManagement;
 
 public class DoorTrigger : MonoBehaviour
 {
-    // The name of the scene to load when the player enters the door.
-    public string nextSceneName = "level2"; // Change this to the name of your King's Room scene
-
-    // When the player enters the trigger zone
-    private void OnTriggerEnter(Collider other)
+    [Header("Set the scene to load in the Inspector")]
+    public string nextSceneName; // ✅ Scene name is now set from the Inspector
+    void Start()
     {
-        if (other.CompareTag("Player")) // Make sure your player object is tagged as "Player"
+        if (!gameObject.activeInHierarchy)
         {
-            // Load the next scene
-            SceneManager.LoadScene("level2");
+            Debug.LogError("❌ DoorTrigger is DISABLED in the hierarchy!");
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"🚪 Something entered the trigger: {other.name}"); // ✅ Check if anything enters
+
+        if (other.CompareTag("Player")) // ✅ Ensure the player tag matches
+        {
+            Debug.Log($"✅ Player entered the door! Loading scene: {nextSceneName}");
+            if (!string.IsNullOrEmpty(nextSceneName))
+            {
+                SceneManager.LoadScene(nextSceneName);
+            }
+            else
+            {
+                Debug.LogError("❌ Scene name is missing in the Inspector!");
+            }
+        }
+    }
+
 }
