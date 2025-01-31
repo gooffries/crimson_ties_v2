@@ -57,17 +57,19 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // ✅ Ensure Player has the "Player" tag
+        if (!other.CompareTag("Player")) return; // ✅ Ignore non-player collisions
+
+        Debug.Log($"⚠️ Enemy {gameObject.name} collided with {other.name}");
+
+        PlayerHealth player = other.GetComponent<PlayerHealth>();
+        if (player != null)
         {
-            PlayerHealth player = other.GetComponent<PlayerHealth>();
-            if (player != null)
-            {
-                float attackDamage = 20f; // ✅ Change this based on the enemy's attack power
-                player.TakeDamage(attackDamage);
-                Debug.Log($"⚔ Enemy hit Player for {attackDamage} damage!");
-            }
+            float attackDamage = 20f;
+            player.TakeDamage(attackDamage);
+            Debug.Log($"⚔ Enemy hit Player for {attackDamage} damage!");
         }
     }
+
 
     public void TakeDamage(float damage)
     {

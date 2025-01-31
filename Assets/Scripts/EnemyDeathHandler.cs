@@ -25,7 +25,7 @@ public class EnemyDeathHandler : MonoBehaviour
     {
         if (splatterPrefab != null)
         {
-            Vector3 splatterPosition = deathPosition + new Vector3(0, 3f, 0); // Adjust Y-axis
+            Vector3 splatterPosition = deathPosition + new Vector3(0, 8f, 0); // Adjust Y-axis
             GameObject splatter = Instantiate(splatterPrefab, splatterPosition, Quaternion.identity);
 
             ParticleSystem particleSystem = splatter.GetComponent<ParticleSystem>();
@@ -56,14 +56,7 @@ public class EnemyDeathHandler : MonoBehaviour
             Debug.Log($"🎁 Dropping {rewardCount} rewards.");
             for (int i = 0; i < rewardCount; i++)
             {
-                // Random offset for reward spawn
-                Vector3 randomOffset = new Vector3(
-                    Random.Range(-rewardSpawnRadius, rewardSpawnRadius),
-                    0, // Spawn at ground level
-                    Random.Range(-rewardSpawnRadius, rewardSpawnRadius)
-                );
-
-                Vector3 spawnPosition = deathPosition + randomOffset;
+                Vector3 spawnPosition = deathPosition + new Vector3(0, 5f, 0);
 
                 // ✅ Ensure rewards are instantiated in the root of the scene
                 GameObject reward = Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);

@@ -442,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   animator: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!114 &6259704575581623772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splatterPrefab: {fileID: 1795063148231502, guid: abfb35fba4b9d0241ab822f66f51fa9e,
     type: 3}
-  rewardPrefab: {fileID: 0}
+  rewardPrefab: {fileID: 2605850495487415324, guid: 3bdf3bc15c0650345949a8b3abc9517e,
+    type: 3}
   rewardCount: 1
   rewardSpawnRadius: 0.5
 --- !u!54 &9220317804139195237
