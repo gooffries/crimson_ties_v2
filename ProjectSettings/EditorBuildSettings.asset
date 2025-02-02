@@ -12,13 +12,13 @@ EditorBuildSettings:
     path: Assets/StartingMenu/StartingScene.unity
     guid: fdc3996210fd74d7eb9c2152d11b19f6
   - enabled: 1
-    path: Assets/StartingMenu/SettingsMenu.unity
-    guid: 30e07a19a1b0b4e6ea179fbf18fc8fe2
-  - enabled: 1
     path: Assets/Level 1/Level1.unity
     guid: bdf11b77bd08e4ceba40e71905dce598
   - enabled: 1
     path: Assets/level2/level2.unity
     guid: 6dd781bc401ae488b9d6a592840bec11
+  - enabled: 1
+    path: Assets/StartingMenu/SettingsMenu.unity
+    guid: 30e07a19a1b0b4e6ea179fbf18fc8fe2
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
