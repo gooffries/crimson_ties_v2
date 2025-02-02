@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SettingsMenu : MonoBehaviour
+public class SettingsMenuScript : MonoBehaviour
 {
-    public void BackToMainMenu()
+    public void Back()
     {
-        SceneManager.LoadScene("StartingScene"); // Replace "MainMenu" with the exact name of your Main Menu scene
+        // Simply load the Main Menu when Back is pressed
+        SceneManager.LoadScene("StartingScene"); // Change "StartingScene" to your actual Main Menu scene name
     }
 }
-
