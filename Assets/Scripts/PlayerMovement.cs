@@ -42,6 +42,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            Debug.Log("✅ Player Input Detected!");
+        }
+
+        Debug.Log($"Move Speed: {walkSpeed}");
         HandleMovement();
         HandleCameraLook();
     }
