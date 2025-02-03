@@ -14,11 +14,12 @@ public class GuardAI : MonoBehaviour
 
     public Animator animator;
     public int maxHealth = 100;
-    private int currentHealth;
+    private float currentHealth;
 
     public GameObject healthBarPrefab; // ✅ Assign Health Bar Prefab in Inspector
     private Slider healthBar;
     private Transform healthBarTransform;
+    private GameObject healthBarInstance;
 
     void Start()
     {
@@ -29,13 +30,21 @@ public class GuardAI : MonoBehaviour
 
         if (healthBarPrefab != null)
         {
-            // ✅ Instantiate health bar and attach it above the guard
-            GameObject healthBarInstance = Instantiate(healthBarPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
+            Debug.Log($"🛠️ Spawning health bar for {gameObject.name}...");
+
+            // ✅ Instantiate health bar OUTSIDE the enemy first
+            healthBarInstance = Instantiate(healthBarPrefab);
             healthBarTransform = healthBarInstance.transform;
             healthBar = healthBarInstance.GetComponentInChildren<Slider>();
 
-            // ✅ Attach the health bar to follow the enemy
-            healthBarTransform.SetParent(null);
+            // ✅ Set correct size BEFORE parenting to enemy (prevents scaling issues)
+            healthBarTransform.localScale = Vector3.one;
+
+            // ✅ Move the health bar above the guard’s head
+            healthBarTransform.position = transform.position + Vector3.up * 3.5f;
+
+            // ✅ Parent the health bar AFTER positioning it (avoids unwanted scaling)
+            healthBarTransform.SetParent(transform, true);
         }
         else
         {
@@ -43,13 +52,15 @@ public class GuardAI : MonoBehaviour
         }
     }
 
+
+
+
     void Update()
     {
         if (healthBarTransform != null)
         {
-            // ✅ Make the health bar always face the camera
-            healthBarTransform.position = transform.position + Vector3.up * 2;
-            healthBarTransform.LookAt(Camera.main.transform);
+            // ✅ Move the health bar above the enemy (adjust height if needed)
+            healthBarTransform.position = transform.position + Vector3.up * 3.5f;
         }
 
         if (isAttacking && agent != null && agent.isOnNavMesh)
@@ -59,7 +70,7 @@ public class GuardAI : MonoBehaviour
             if (distance > attackRange)
             {
                 agent.SetDestination(player.position);
-                // animator.SetBool("isAttacking", false);
+                animator.SetBool("isAttacking", false);
             }
             else
             {
@@ -92,7 +103,7 @@ public class GuardAI : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         UpdateHealthUI();
@@ -103,13 +114,20 @@ public class GuardAI : MonoBehaviour
         }
     }
 
+
     private void Die()
     {
         Debug.Log($"☠️ {gameObject.name} has died!");
         animator.SetTrigger("Die");
         agent.isStopped = true;
-        Destroy(healthBarTransform.gameObject); // ✅ Remove health bar
-        Destroy(gameObject, 2f); // ✅ Remove guard after 2 sec
+
+        // ✅ Destroy health bar when guard dies
+        if (healthBarInstance != null)
+        {
+            Destroy(healthBarInstance);
+        }
+
+        Destroy(gameObject, 2f);
     }
 
     private void UpdateHealthUI()

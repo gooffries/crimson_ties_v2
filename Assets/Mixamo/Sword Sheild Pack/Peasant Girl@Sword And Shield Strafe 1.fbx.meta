@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: b549692f7f04c6c409ff3e2bf2f5e3a7
-AssetOrigin:
-  serializedVersion: 1
-  productId: 276754
-  packageName: A modular Fantasy knight character
-  packageVersion: 1.0
-  assetPath: Assets/Fantasy knight/Base mesh/Skin_1.fbx
-  uploadId: 642948
+guid: bc4b8de9ca61f63469eb1cad68228ea3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -15,13 +8,13 @@ ModelImporter:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -96,7 +89,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -104,9 +97,9 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
+  importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
