@@ -2,17 +2,25 @@ using UnityEngine;
 
 public class BillBoard : MonoBehaviour
 {
-    public Transform cam; // Reference to the main camera transform
+    private Transform cam; // Reference to the main camera transform
+
+    void Start()
+    {
+        cam = Camera.main.transform; // ✅ Automatically find the main camera
+    }
 
     void LateUpdate()
     {
         if (cam != null)
         {
-            transform.LookAt(transform.position + cam.forward);
+            // ✅ Rotate only on the Y-axis (prevents weird tilting)
+            Vector3 direction = cam.position - transform.position;
+            direction.y = 0; // ✅ Remove vertical rotation
+            transform.rotation = Quaternion.LookRotation(direction);
         }
         else
         {
-            Debug.LogError("Camera reference is missing in BillBoard script.");
+            Debug.LogError("❌ ERROR: Camera reference is missing in BillBoard script.");
         }
     }
 }
