@@ -12,15 +12,24 @@ public class PauseMenu : MonoBehaviour
         // Toggle Pause Menu when pressing "Escape"
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("Escape key pressed");
+
             if (isPaused)
+            {
+                Debug.Log("Resuming game...");
                 Resume();
+            }
             else
+            {
+                Debug.Log("Pausing game...");
                 Pause();
+            }
         }
     }
 
     public void Resume()
     {
+        Debug.Log("Resume button clicked");
         pauseMenuUI.SetActive(false); // Hide Pause Menu
         Time.timeScale = 1f; // Resume game time
         isPaused = false;
@@ -28,6 +37,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        Debug.Log("Pause method called - Showing Pause Menu");
         pauseMenuUI.SetActive(true); // Show Pause Menu
         Time.timeScale = 0f; // Freeze game time
         isPaused = true;
@@ -35,18 +45,21 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToSettings()
     {
+        Debug.Log("Settings button clicked - Going to Settings Menu");
         pauseMenuUI.SetActive(false); // Hide Pause Menu
         settingsMenuUI.SetActive(true); // Show Settings Menu (on the same canvas)
     }
 
     public void GoToMainMenu()
     {
+        Debug.Log("Main Menu button clicked - Returning to Main Menu");
         Time.timeScale = 1f; // Unpause game time
         SceneManager.LoadScene("StartingScene"); // Load Main Menu Scene
     }
 
     public void BackToPauseMenu()
     {
+        Debug.Log("Back button clicked - Returning to Pause Menu");
         settingsMenuUI.SetActive(false); // Hide Settings Menu
         pauseMenuUI.SetActive(true); // Show Pause Menu
     }
