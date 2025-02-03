@@ -3,16 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
+    public GameObject pauseMenuUI; // Pause Menu UI
+    public GameObject settingsMenuUI; // Settings Menu UI (in the same canvas as the Pause Menu)
     private bool isPaused = false;
-
-    void Start()
-    {
-        pauseMenuUI.SetActive(false); // Ensure menu starts hidden
-    }
 
     void Update()
     {
+        // Toggle Pause Menu when pressing "Escape"
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -24,48 +21,33 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("🚀 Resume Button Clicked!");
-
-        // Ensure game unpauses before hiding UI
-        Time.timeScale = 1f;
-        Debug.Log("✅ Time.timeScale set to: " + Time.timeScale);
-
-        // Hide the pause menu
-        if (pauseMenuUI != null)
-        {
-            pauseMenuUI.SetActive(false);
-            Debug.Log("✅ Pause Menu Closed");
-        }
-        else
-        {
-            Debug.LogError("❌ Pause Menu UI is NULL!");
-        }
-
+        pauseMenuUI.SetActive(false); // Hide Pause Menu
+        Time.timeScale = 1f; // Resume game time
         isPaused = false;
-
-        // Reset UI selection to prevent interaction freeze
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
     }
-
 
     public void Pause()
     {
-        Debug.Log("Game Paused!"); // Debugging
-
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true); // Show Pause Menu
+        Time.timeScale = 0f; // Freeze game time
         isPaused = true;
     }
 
     public void GoToSettings()
     {
-        Time.timeScale = 1f; // Ensure game is unpaused when switching scenes
-        SceneManager.LoadScene("SettingsMenu");
+        pauseMenuUI.SetActive(false); // Hide Pause Menu
+        settingsMenuUI.SetActive(true); // Show Settings Menu (on the same canvas)
     }
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1f; // Ensure game is unpaused when switching scenes
-        SceneManager.LoadScene("StartingScene");
+        Time.timeScale = 1f; // Unpause game time
+        SceneManager.LoadScene("StartingScene"); // Load Main Menu Scene
+    }
+
+    public void BackToPauseMenu()
+    {
+        settingsMenuUI.SetActive(false); // Hide Settings Menu
+        pauseMenuUI.SetActive(true); // Show Pause Menu
     }
 }
