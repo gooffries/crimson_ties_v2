@@ -3,8 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI; // Pause Menu UI
-    public GameObject settingsMenuUI; // Settings Menu UI (in the same canvas as the Pause Menu)
+    public GameObject pauseMenuUI; // Assign your Pause Menu Panel here in the Inspector.
     private bool isPaused = false;
 
     void Update()
@@ -35,19 +34,13 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToSettings()
     {
-        pauseMenuUI.SetActive(false); // Hide Pause Menu
-        settingsMenuUI.SetActive(true); // Show Settings Menu (on the same canvas)
+        Time.timeScale = 1f; // Ensure game is unpaused when switching scenes
+        SceneManager.LoadScene("SettingsMenu"); // Replace "SettingsMenu" with your settings scene name
     }
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1f; // Unpause game time
-        SceneManager.LoadScene("StartingScene"); // Load Main Menu Scene
-    }
-
-    public void BackToPauseMenu()
-    {
-        settingsMenuUI.SetActive(false); // Hide Settings Menu
-        pauseMenuUI.SetActive(true); // Show Pause Menu
+        Time.timeScale = 1f; // Ensure game is unpaused when switching scenes
+        SceneManager.LoadScene("StartingScene"); // Replace "MainMenu" with your main menu scene name
     }
 }

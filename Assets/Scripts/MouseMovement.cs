@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseMovement : MonoBehaviour
 {
+    [Header("Mouse Settings")]
     public float mouseSensitivity = 100f;
 
-    public Transform playerBody; // Reference to the player's body (for yaw)
+    [Header("References")]
+    public Transform playerBody;
 
-    float xRotation = 0f;
+    private float xRotation = 0f;
 
     void Start()
     {
-        // Lock the cursor to the middle of the screen and hide it
         Cursor.lockState = CursorLockMode.Locked;
+        Debug.Log("MouseMovement script initialized.");
     }
 
     void Update()
@@ -22,12 +22,22 @@ public class MouseMovement : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // Rotate the camera up and down (pitch)
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Prevent over-rotation
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        // Debug.Log($"Mouse Input: X = {mouseX}, Y = {mouseY}");
 
-        // Rotate the player left and right (yaw)
-        playerBody.Rotate(Vector3.up * mouseX);
+        // Horizontal rotation (yaw)
+        if (playerBody != null)
+        {
+            playerBody.Rotate(Vector3.up * mouseX);
+        }
+        else
+        {
+            Debug.LogError("Player Body reference is missing!");
+            return;
+        }
+
+        // Vertical rotation (pitch)
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 }

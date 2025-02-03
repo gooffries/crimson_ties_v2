@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Color_Texture:
-        m_Texture: {fileID: 2800000, guid: ff4e33b57398d794c9a62a93d9d8d68c, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1fd7ade2bee9c94d8d41c6a0107d84c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -80,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Texture:
-        m_Texture: {fileID: 2800000, guid: a0b2b5f78c3c17f4ba84225f9b14a0f6, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1fd7ade2bee9c94d8d41c6a0107d84c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ORM_Texture:
