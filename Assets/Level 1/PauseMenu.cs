@@ -3,12 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI; // Assign your Pause Menu Panel here in the Inspector.
+    public GameObject pauseMenuUI;
     private bool isPaused = false;
+
+    void Start()
+    {
+        pauseMenuUI.SetActive(false); // Ensure menu starts hidden
+    }
 
     void Update()
     {
-        // Toggle Pause Menu when pressing "Escape"
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -20,27 +24,48 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false); // Hide Pause Menu
-        Time.timeScale = 1f; // Resume game time
+        Debug.Log("🚀 Resume Button Clicked!");
+
+        // Ensure game unpauses before hiding UI
+        Time.timeScale = 1f;
+        Debug.Log("✅ Time.timeScale set to: " + Time.timeScale);
+
+        // Hide the pause menu
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false);
+            Debug.Log("✅ Pause Menu Closed");
+        }
+        else
+        {
+            Debug.LogError("❌ Pause Menu UI is NULL!");
+        }
+
         isPaused = false;
+
+        // Reset UI selection to prevent interaction freeze
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
     }
+
 
     public void Pause()
     {
-        pauseMenuUI.SetActive(true); // Show Pause Menu
-        Time.timeScale = 0f; // Freeze game time
+        Debug.Log("Game Paused!"); // Debugging
+
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void GoToSettings()
     {
         Time.timeScale = 1f; // Ensure game is unpaused when switching scenes
-        SceneManager.LoadScene("SettingsMenu"); // Replace "SettingsMenu" with your settings scene name
+        SceneManager.LoadScene("SettingsMenu");
     }
 
     public void GoToMainMenu()
     {
         Time.timeScale = 1f; // Ensure game is unpaused when switching scenes
-        SceneManager.LoadScene("StartingScene"); // Replace "MainMenu" with your main menu scene name
+        SceneManager.LoadScene("StartingScene");
     }
 }

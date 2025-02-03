@@ -7,18 +7,31 @@ public class EnemyDeathHandler : MonoBehaviour
     public int rewardCount = 1;      // Number of rewards to drop
     public float rewardSpawnRadius = 0.5f; // Radius for random reward spawn
 
+    private Vector3 deathPosition;
+
     public void HandleDeath()
     {
-        // Instantiate the splatter effect
+        deathPosition = transform.position; // Record enemy's final position
+        Debug.Log($"📍 Enemy's final position recorded: {deathPosition}");
+
+        HandleSplatterEffect(); // ✅ Spawn effect first
+        DropRewards(); // ✅ Drop rewards
+
+        Debug.Log("💀 Destroying enemy...");
+        Destroy(gameObject, 2f); // ✅ Destroy enemy after everything is done
+    }
+
+    private void HandleSplatterEffect()
+    {
         if (splatterPrefab != null)
         {
-            Vector3 splatterPosition = transform.position + new Vector3(0, 2f, 0); // Adjust Y-axis
+            Vector3 splatterPosition = deathPosition + new Vector3(0, 8f, 0); // Adjust Y-axis
             GameObject splatter = Instantiate(splatterPrefab, splatterPosition, Quaternion.identity);
 
             ParticleSystem particleSystem = splatter.GetComponent<ParticleSystem>();
             if (particleSystem != null)
             {
-                Debug.Log("Playing splatter effect.");
+                Debug.Log("💥 Playing splatter effect.");
                 particleSystem.Play();
 
                 // Destroy splatter after effect finishes
@@ -27,36 +40,34 @@ public class EnemyDeathHandler : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Splatter prefab is missing a ParticleSystem component!");
+                Debug.LogWarning("⚠️ Splatter prefab is missing a ParticleSystem component!");
             }
         }
         else
         {
-            Debug.LogWarning("Splatter prefab is not assigned!");
+            Debug.LogWarning("⚠️ Splatter prefab is not assigned!");
         }
+    }
 
-        // Drop rewards
+    private void DropRewards()
+    {
         if (rewardPrefab != null)
         {
-            Debug.Log($"Dropping {rewardCount} rewards.");
+            Debug.Log($"🎁 Dropping {rewardCount} rewards.");
             for (int i = 0; i < rewardCount; i++)
             {
-                // Random offset for reward spawn
-                Vector3 randomOffset = new Vector3(
-                    Random.Range(-rewardSpawnRadius, rewardSpawnRadius),
-                    0, // Spawn at ground level
-                    Random.Range(-rewardSpawnRadius, rewardSpawnRadius)
-                );
+                Vector3 spawnPosition = deathPosition + new Vector3(0, 5f, 0);
 
-                Vector3 spawnPosition = transform.position + randomOffset;
+                // ✅ Ensure rewards are instantiated in the root of the scene
+                GameObject reward = Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);
+                reward.transform.SetParent(null); // ✅ Prevent reward from being deleted when the enemy is destroyed
 
-                Instantiate(rewardPrefab, spawnPosition, Quaternion.identity);
-                Debug.Log($"Reward spawned at: {spawnPosition}");
+                Debug.Log($"🎁 Reward spawned at: {spawnPosition}");
             }
         }
         else
         {
-            Debug.LogWarning("Reward prefab is not assigned!");
+            Debug.LogWarning("⚠️ Reward prefab is not assigned!");
         }
     }
 }
