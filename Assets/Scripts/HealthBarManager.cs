@@ -29,7 +29,7 @@ public class HealthBarManager : MonoBehaviour
     {
         if (enemy == null) return;
 
-        // ✅ Check if the enemy already has a health bar
+        //Check if the enemy already has a health bar
         if (healthBars.ContainsKey(enemy))
         {
             Debug.LogWarning($"⚠️ Health bar already exists for {enemy.name}, skipping creation.");
@@ -42,7 +42,7 @@ public class HealthBarManager : MonoBehaviour
             return;
         }
 
-        // ✅ Instantiate the health bar and attach it to the canvas
+        //Instantiate the health bar and attach it to the canvas
         GameObject healthBarObject = Instantiate(healthBarPrefab, canvas.transform);
         HealthBar healthBar = healthBarObject.GetComponent<HealthBar>();
 
@@ -54,7 +54,7 @@ public class HealthBarManager : MonoBehaviour
 
         healthBar.Initialize(enemy.transform, maxHealth, new Vector3(0, 8f, 0));
 
-        // ✅ Store the health bar in the dictionary
+        // Store the health bar in the dictionary
         healthBars[enemy] = healthBar;
         Debug.Log($"✅ Successfully added Health Bar for {enemy.name}");
     }
@@ -69,14 +69,14 @@ public class HealthBarManager : MonoBehaviour
 
         if (healthBars.ContainsKey(enemy))
         {
-            Debug.Log($"🩸 Updating {enemy.name}'s health bar: {currentHealth}/{healthBars[enemy].maxHealth}");
+            Debug.Log($"Updating {enemy.name}'s health bar: {currentHealth}/{healthBars[enemy].maxHealth}");
             healthBars[enemy].UpdateHealth(currentHealth);
         }
         else
         {
-            Debug.LogWarning($"⚠️ No health bar found for {enemy.name}! Running emergency AddHealthBar...");
+            Debug.LogWarning($"No health bar found for {enemy.name}! Running emergency AddHealthBar...");
 
-            // ✅ If health bar is missing, attempt to re-add it
+            // If health bar is missing, attempt to re-add it
             AddHealthBar(enemy, currentHealth);
         }
     }
@@ -90,8 +90,8 @@ public class HealthBarManager : MonoBehaviour
 
         if (healthBars.ContainsKey(enemy))
         {
-            Debug.Log($"🗑 Removing Health Bar for {enemy.name}");
-            Destroy(healthBars[enemy].gameObject); // ✅ Destroy the UI element
+            Debug.Log($"Removing Health Bar for {enemy.name}");
+            Destroy(healthBars[enemy].gameObject); // Destroy the UI element
             healthBars.Remove(enemy);
         }
     }
