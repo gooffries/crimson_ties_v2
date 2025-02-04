@@ -2,22 +2,33 @@ using UnityEngine;
 
 public class HowToPlayMenu : MonoBehaviour
 {
-    public GameObject howToPlayPanel; // Assign the How To Play panel in the Inspector
+    public GameObject pauseMenuUI; // Reference to the Pause Menu UI
+    public GameObject howToPlayPanel; // Reference to the Help Panel
 
     public void ShowHowToPlay()
     {
-        // Activate the How To Play panel
+        Debug.Log("Help button clicked - Showing How To Play Panel");
+
+        // Hide Pause Menu and show How To Play Panel
+        pauseMenuUI.SetActive(false);
         howToPlayPanel.SetActive(true);
-        // Optionally, pause the game (if you want to freeze time while the How To Play panel is active)
+
+        // Pause game time
         Time.timeScale = 0f;
+
+        // Unlock cursor for UI interaction
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void HideHowToPlay()
     {
-        // Deactivate the How To Play panel
+        Debug.Log("Back button clicked - Returning to Pause Menu");
+
+        // Hide How To Play Panel and show Pause Menu
         howToPlayPanel.SetActive(false);
-        // Resume the game
-        Time.timeScale = 1f;
+        pauseMenuUI.SetActive(true);
+
+        // Game is still paused, so don't resume time here
     }
 }
-

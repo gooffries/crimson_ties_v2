@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI; // Pause Menu UI
-    public GameObject settingsMenuUI; // Settings Menu UI (in the same canvas as the Pause Menu)
+    public GameObject settingsMenuUI; // Settings Menu UI
+    public GameObject helpMenuUI; // Help Menu UI
     private bool isPaused = false;
 
     void Update()
@@ -33,6 +34,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false); // Hide Pause Menu
         Time.timeScale = 1f; // Resume game time
         isPaused = false;
+
+        // Lock and hide cursor for gameplay
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Pause()
@@ -41,13 +46,24 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true); // Show Pause Menu
         Time.timeScale = 0f; // Freeze game time
         isPaused = true;
+
+        // Unlock and show cursor for UI interaction
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void GoToSettings()
     {
         Debug.Log("Settings button clicked - Going to Settings Menu");
         pauseMenuUI.SetActive(false); // Hide Pause Menu
-        settingsMenuUI.SetActive(true); // Show Settings Menu (on the same canvas)
+        settingsMenuUI.SetActive(true); // Show Settings Menu
+    }
+
+    public void GoToHelp()
+    {
+        Debug.Log("Help button clicked - Going to Help Menu");
+        pauseMenuUI.SetActive(false); // Hide Pause Menu
+        helpMenuUI.SetActive(true); // Show Help Menu
     }
 
     public void GoToMainMenu()
@@ -61,6 +77,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Back button clicked - Returning to Pause Menu");
         settingsMenuUI.SetActive(false); // Hide Settings Menu
+        helpMenuUI.SetActive(false); // Hide Help Menu
         pauseMenuUI.SetActive(true); // Show Pause Menu
     }
 }
