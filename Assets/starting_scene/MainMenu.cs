@@ -7,13 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // Load next scene
-    }
-
-    public void GoToSettingsScene()
-    {
-        MenuManager.previousMenu = "MainMenu"; // Store previous menu before switching scenes
-        SceneManager.LoadScene("SettingsMenu");
+        SceneManager.LoadScene("Level 1 copy"); // Load next scene
     }
 
     public void QuitScene()

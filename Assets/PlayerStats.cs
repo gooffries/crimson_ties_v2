@@ -43,6 +43,6 @@ public class PlayerStats : MonoBehaviour
 
     void UpdateGemsUI()
     {
-        gemsText.text = "Gems: " + gemsCollected;
+        gemsText.text = gemsCollected.ToString(); // Convert int to string
     }
 }

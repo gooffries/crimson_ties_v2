@@ -6868,8 +6868,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281705955
-  m_fontColor: {r: 0.8901961, g: 0.64705884, b: 0.20784314, a: 1}
+    rgba: 4281706211
+  m_fontColor: {r: 0.8901961, g: 0.6509804, b: 0.20784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6892,7 +6892,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -9746,7 +9746,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1073478081}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: GoToMainMenu
+        m_MethodName: GoToHelp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12521,7 +12521,7 @@ PrefabInstance:
     - target: {fileID: 1212976679410258860, guid: ea566ea2916e04481a81660acb5affd0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1342774818937845858, guid: ea566ea2916e04481a81660acb5affd0,
         type: 3}
@@ -12775,6 +12775,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 108.2218
       objectReference: {fileID: 0}
+    - target: {fileID: 3678138775278791887, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1003898316}
+    - target: {fileID: 3678138775278791887, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678138775278791887, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SettingsScript, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3957986178308082310, guid: ea566ea2916e04481a81660acb5affd0,
         type: 3}
       propertyPath: m_text
@@ -12849,6 +12864,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -170
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189371247141186079, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1003898316}
+    - target: {fileID: 4189371247141186079, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ApplySettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189371247141186079, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SettingsScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4287761598911698681, guid: ea566ea2916e04481a81660acb5affd0,
         type: 3}
@@ -13576,6 +13606,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730056196217515628, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 844816906}
+    - target: {fileID: 7730056196217515628, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideHowToPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730056196217515628, guid: ea566ea2916e04481a81660acb5affd0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HowToPlayMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7850328739291832400, guid: ea566ea2916e04481a81660acb5affd0,
         type: 3}
@@ -17664,7 +17709,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 50
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -18049,6 +18094,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ada2d395936fe4089b5fcb2f519b95, type: 3}
+--- !u!1 &1003898315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1003898317}
+  - component: {fileID: 1003898316}
+  m_Layer: 0
+  m_Name: SettingsScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1003898316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003898315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0979a8c496ba4f04981ddfa47eb1421d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsPanel: {fileID: 160722786}
+  pausePanel: {fileID: 622060158}
+  backgroundSoundSlider: {fileID: 912089881}
+  soundEffectsSlider: {fileID: 573509944}
+  easyButton: {fileID: 1833837411}
+  normalButton: {fileID: 1336717928}
+  hardButton: {fileID: 1729046336}
+--- !u!4 &1003898317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003898315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1004088645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25523,7 +25619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 300
-  timerText: {fileID: 0}
+  timerText: {fileID: 897382403}
 --- !u!4 &1419349105
 Transform:
   m_ObjectHideFlags: 0
@@ -32615,7 +32711,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 50
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -35143,7 +35239,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -35280,7 +35376,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -38082,6 +38178,11 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1589686542}
+    - target: {fileID: 8027630237344978048, guid: e7c4455dcb2b93149a754f61f34376d8,
+        type: 3}
+      propertyPath: healthBarPrefab
+      value: 
+      objectReference: {fileID: 988797929}
     - target: {fileID: 8300854442289830743, guid: e7c4455dcb2b93149a754f61f34376d8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38200,6 +38301,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7529247681031285349, guid: a8b778be22d5d0940a7a686d4d4efe81,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 988797931}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38234,3 +38340,4 @@ SceneRoots:
   - {fileID: 9171225330796567974}
   - {fileID: 868480119}
   - {fileID: 1878561437}
+  - {fileID: 1003898317}
