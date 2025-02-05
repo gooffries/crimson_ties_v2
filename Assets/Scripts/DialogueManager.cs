@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections.Generic; // ✅ Required for Lists
 using System.Collections;
 
-
 public class DialogueManager : MonoBehaviour
 {
     public GameObject dialoguePanel; // ✅ Assign Dialogue Panel in Inspector
@@ -24,102 +23,87 @@ public class DialogueManager : MonoBehaviour
 
     public List<DialogueLine> dialogueLines = new List<DialogueLine>
     {
-        new DialogueLine { speaker = "King Blabla: ", dialogue = "I heard you killed many of my man" },
-        new DialogueLine { speaker = "King Blabla: ", dialogue = "What makes you think you can kill me?" },
-        new DialogueLine { speaker = "You: ", dialogue = "You destroyed my whole family. I want you dead." },
-        new DialogueLine { speaker = "King Blabla: ", dialogue = "HAHAHAHHA  Try me." },
+        new DialogueLine { speaker = "King Ergoth: ", dialogue = "Well, well…look " +
+            "who finally decided to show up! Took you long enough!" },
+
+        new DialogueLine { speaker = "Arya: ", dialogue = "You have taken everything " +
+            "from me. My father. My peace. My life. And now, I have come to take my revenge!" },
+
+        new DialogueLine { speaker = "King Ergoth: ", dialogue = "Your father? That pathetic " +
+            "fool thought he could keep secrets from me. Did he really think I wouldn’t find " +
+            "out about his little mistake?" },
+
+        new DialogueLine { speaker = "Arya: ", dialogue = "You don’t deserve this throne. " +
+            "You don’t deserve to sit there like a coward, surrounded by your soldiers!" },
+
+        new DialogueLine { speaker = "King Ergoth: ", dialogue = "I am King Ergoth! " +
+            "Everything in this kingdom bends to my will. Your father? Dead. Because I wanted it." },
+
+        new DialogueLine { speaker = "King Ergoth: ", dialogue = "And now…there is only one last matter to attend to." },
+
+        new DialogueLine { speaker = "King Ergoth: ", dialogue = "Kill her! And make it slow…" },
     };
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        // Ensure cursor is visible when dialogue is active
+        if (isDialogueActive)
         {
-            Debug.Log("🎮 'E' Pressed! Checking dialogue state...");
+            Cursor.visible = true; // Keep the cursor visible
         }
 
+        // Dialogue progression with keyboard input (E) or button press (downward arrow)
         if (isDialogueActive && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("🟢 Dialogue is active. Calling ShowNextLine()");
-            ShowNextLine();
-        }
-        else if (!isDialogueActive && Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("🔴 Dialogue is NOT active. Ignoring input.");
+            ShowNextLine(); // Advance dialogue when E is pressed
         }
     }
+
     public bool IsDialogueActive()
     {
         return isDialogueActive;
     }
 
-
     public void StartDialogue()
     {
-        if (dialogueLines.Count == 0) return; // ✅ Prevents errors
-
-        Debug.Log("✅ Dialogue started!");
+        if (dialogueLines.Count == 0) return; // Prevents errors
 
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
-        currentLine = -1; // ✅ Start before first line
-
-        RefreshDialogue(); // ✅ Force update
-
-        Debug.Log("🔄 Forced Dialogue Refresh - NEW LINES SHOULD NOW SHOW");
+        currentLine = -1; // Start before first line
+        ShowNextLine(); // Show first line immediately
     }
 
-
-    public void RefreshDialogue()
+    // Button click handler for advancing dialogue
+    public void OnNextDialogueButtonClick()
     {
-        Debug.Log("🔄 Refreshing Dialogue Data...");
-
-        // ✅ Force clear the dialogue list (IMPORTANT)
-        dialogueLines = new List<DialogueLine>
-    {
-        new DialogueLine { speaker = "King Blabla: ", dialogue = "I heard you killed many of my men" },
-        new DialogueLine { speaker = "King Blabla: ", dialogue = "What makes you think you can kill me?" },
-        new DialogueLine { speaker = "You: ", dialogue = "You destroyed my whole family. I want you dead." },
-        new DialogueLine { speaker = "King Blabla: ", dialogue = "HAHAHAHA Try me." },
-    };
-
-        Debug.Log("✅ DialogueLines list has been RESET with new data!");
-
-        currentLine = -1; // ✅ Reset dialogue index
-        ShowNextLine(); // ✅ Force UI update
-
-        Debug.Log("✅ Dialogue has been refreshed.");
+        ShowNextLine(); // Advance dialogue when button is clicked
     }
 
     private void ShowNextLine()
     {
-        Debug.Log($"🔹 ShowNextLine() called. Current Line BEFORE increment: {currentLine}");
+        currentLine++; // Move to the next line
 
-        currentLine++; // ✅ Move to the next line
-
-        if (currentLine < dialogueLines.Count) // ✅ If more lines exist, display them
+        if (currentLine < dialogueLines.Count) // If more lines exist, display them
         {
-            Debug.Log($"📝 Showing Line {currentLine}: {dialogueLines[currentLine].dialogue}");
+            nameText.text = dialogueLines[currentLine].speaker;
+            dialogueText.text = dialogueLines[currentLine].dialogue;
 
-            nameText.text = dialogueLines[currentLine].speaker; // ✅ Update UI with speaker name
-            dialogueText.text = dialogueLines[currentLine].dialogue; // ✅ Update UI with dialogue
-
-            // ✅ Change text color based on speaker (Optional)
-            if (dialogueLines[currentLine].speaker == "Player")
+            // Change text color based on speaker (Optional)
+            if (dialogueLines[currentLine].speaker == "Arya: ")
             {
-                nameText.color = Color.green; // ✅ Make Player text green
+                nameText.color = new Color32(215, 38, 56, 255); // Arya text
             }
             else
             {
-                nameText.color = Color.white; // ✅ Keep NPC text white
+                nameText.color = Color.white; // King Ergoth text
             }
 
-            // ✅ Force Unity to refresh UI
             dialogueText.ForceMeshUpdate();
             nameText.ForceMeshUpdate();
         }
         else
         {
-            Debug.Log("✅ All lines finished. Calling EndDialogue() now...");
             EndDialogue();
         }
     }
@@ -129,9 +113,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         isDialogueActive = false;
 
-        Debug.Log("✅ Dialogue ended. All guards will start attacking!");
-
-        // ✅ Loop through all guards and activate them
+        // Loop through all guards and activate them
         foreach (GameObject guard in guards)
         {
             if (guard != null)
@@ -139,32 +121,9 @@ public class DialogueManager : MonoBehaviour
                 GuardAI guardAI = guard.GetComponent<GuardAI>();
                 if (guardAI != null)
                 {
-                    guardAI.StartAttacking(); // ✅ Make the guard attack after dialogue ends
+                    guardAI.StartAttacking(); // Make the guard attack after dialogue ends
                 }
-                else
-                {
-                    Debug.LogError($"❌ ERROR: Guard AI script not found on {guard.name}!");
-                }
-            }
-            else
-            {
-                Debug.LogError("❌ ERROR: One of the Guard GameObjects is NULL! Assign all guards in Inspector.");
             }
         }
     }
-
-
-    private IEnumerator AdjustPositionAfterAnimation()
-    {
-        yield return new WaitForSeconds(1.5f); // ✅ Adjust based on animation length
-
-        Vector3 correctPosition = characterAnimator.transform.position;
-        correctPosition.y = 127; // ✅ Move character back to ground level
-        characterAnimator.transform.position = correctPosition;
-
-        Debug.Log("✅ Character repositioned to the ground.");
-    }
-
-
-
 }
