@@ -62,13 +62,13 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("⚠ Player HealthBar not assigned!");
+            Debug.LogWarning("⚠️ Player HealthBar not assigned!");
         }
     }
 
     private void Die()
     {
-        Debug.Log("☠ Player has died!");
+        Debug.Log("☠️ Player has died!");
         // ✅ Add game over logic here (disable controls, show UI, etc.)
     }
 }

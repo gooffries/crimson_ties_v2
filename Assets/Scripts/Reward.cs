@@ -11,13 +11,13 @@ public class Reward : MonoBehaviour
             Debug.Log($"Player collected {gemValue} gem(s).");
 
             // Add gems to the UIManager
-            if (UIManager.Instance != null)
+            if (PlayerGem.Instance != null)
             {
-                UIManager.Instance.AddGem(gemValue);
+                PlayerGem.Instance.AddGem(gemValue);
             }
             else
             {
-                Debug.LogWarning("UIManager instance not found!");
+                Debug.LogWarning("PlayerGem instance not found!");
             }
 
             // Destroy the reward object after collection

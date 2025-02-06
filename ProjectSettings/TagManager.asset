@@ -8,6 +8,7 @@ TagManager:
   - Rewards
   - WayPoints
   - Boss
+  - WeaponController
   layers:
   - Default
   - TransparentFX
