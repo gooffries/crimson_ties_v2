@@ -2549,6 +2549,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 840967582}
+  - {fileID: 1638403700}
   - {fileID: 519866765}
   - {fileID: 1971930694}
   - {fileID: 1183231367}
@@ -3090,7 +3091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introPanel: {fileID: 1093640650}
-  playButton: {fileID: 0}
   closeButton: {fileID: 288151210}
 --- !u!4 &191410457
 Transform:
@@ -7581,7 +7581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: 490}
+  m_AnchoredPosition: {x: -0, y: 504}
   m_SizeDelta: {x: 393.0555, y: 43.9597}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &471907987
@@ -15067,7 +15067,7 @@ GameObject:
   - component: {fileID: 840967584}
   - component: {fileID: 840967583}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30334,6 +30334,81 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ada2d395936fe4089b5fcb2f519b95, type: 3}
+--- !u!1 &1638403699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638403700}
+  - component: {fileID: 1638403702}
+  - component: {fileID: 1638403701}
+  m_Layer: 5
+  m_Name: NTULogoImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1638403700
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638403699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 158301531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1099, y: 533}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1638403701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638403699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 608465012cdab44b8bd18e9976bb8271, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1638403702
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638403699}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1641124582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35172,7 +35247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.5461, y: -63}
+  m_AnchoredPosition: {x: -5.5461, y: -25}
   m_SizeDelta: {x: 1088.5334, y: 896.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1917746179
@@ -35195,19 +35270,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome to Crimson Ties!\n\nIn this action-packed adventure, you will
-    take on the role of Arya, a fierce warrior whose father was tragically killed,
-    and her home destroyed, by the ruthless King Ergoth. Driven by vengeance, you
-    must journey through treacherous lands to reach Ergoth's castle and exact your
-    revenge. Along the way, you will face countless enemies, but fear not\u2014your
-    courage and strength will guide you.\n\nAs you slay enemies, you will collect
-    gems, which are key to strengthening Arya's sword. For every 20 gems you gather,
-    you will be able to upgrade your sword, enabling you to defeat enemies more quickly
-    and efficiently. With each upgrade, you will get closer to your ultimate goal:
-    the final showdown with King Ergoth.\n\nPrepare yourself, for the path is fraught
-    with danger, but your resolve is unbreakable. Vengeance and determination will
-    lead the way as you fight your way to the castle and confront the tyrant who
-    destroyed your life.\n\nLet the adventure begin!"
+  m_text: "<b>Welcome to Crimson Ties!</b>\n\nIn this action-packed adventure, you
+    will take on the role of <color=#E30A17><b>Arya</b></color>, a fierce warrior
+    whose father was tragically killed, and her home destroyed, by the ruthless King
+    Ergoth. Driven by vengeance, you must journey through treacherous lands to reach
+    Ergoth's castle and exact your revenge. Along the way, you will face countless
+    enemies, but fear not\u2014your courage and strength will guide you.\n\nAs you
+    slay enemies, you will collect gems, which are key to strengthening Arya's sword.
+    <color=#FF6900><b>For every 20 gems you gather, you will be able to upgrade your
+    sword</b></color>, enabling you to defeat enemies more quickly and efficiently.
+    With each upgrade, you will get closer to your ultimate goal: the final showdown
+    with King Ergoth.\n\n<color=#3A9E12><b>If you ever need to pause the game, press
+    the Escape (ESC) key on your keyboard</b></color> to open the Pause Menu. From
+    there, you can adjust settings, resume your journey, or exit the game.\n\nPrepare
+    yourself, for the path is fraught with danger, but your resolve is unbreakable.
+    Vengeance and determination will lead the way as you fight your way to the castle
+    and confront the tyrant who destroyed your life.\n\nLet the adventure begin!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2254e8f2275aa4758b30d47184fc0c5d, type: 2}
   m_sharedMaterial: {fileID: 8603808845942060510, guid: 2254e8f2275aa4758b30d47184fc0c5d,
@@ -35217,8 +35295,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4284045662
+  m_fontColor: {r: 0.36862746, g: 0.34901962, b: 0.34901962, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -39265,7 +39343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1033, y: 404}
+  m_AnchoredPosition: {x: -1025.5, y: 404}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2139778649
@@ -39288,7 +39366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 35
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2254e8f2275aa4758b30d47184fc0c5d, type: 2}
   m_sharedMaterial: {fileID: 8603808845942060510, guid: 2254e8f2275aa4758b30d47184fc0c5d,

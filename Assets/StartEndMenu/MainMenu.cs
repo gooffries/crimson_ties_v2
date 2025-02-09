@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Function to start the game
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level 1 copy"); // Load next scene
+        SceneManager.LoadScene("Level 1 copy"); // Replace with your actual game scene name
     }
 
-    public void QuitScene()
+    // Function to exit the game
+    public void ExitGame()
     {
-        Application.Quit();
+        Debug.Log("Game is exiting..."); // Log for testing in Unity Editor
+        Application.Quit(); // Quits the application (works in a built game)
     }
 }
